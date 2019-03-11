@@ -1,0 +1,31 @@
+---
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: default
+spec:
+  limits:
+  - max:
+      memory: 2Gi
+      cpu: 2
+    min:
+      memory: 16Mi
+      cpu: 5m
+    default:
+      memory: 128Mi
+      cpu: 100m
+    defaultRequest:
+      memory: 64Mi
+      cpu: 50m
+    type: Container
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: default
+spec:
+  hard:
+    requests.cpu: "2"
+    requests.memory: 2Gi
+    limits.cpu: "3"
+    limits.memory: 3Gi

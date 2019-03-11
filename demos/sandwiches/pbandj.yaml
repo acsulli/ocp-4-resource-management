@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pbandj
+  labels:
+    nutType: "peanut"
+    nutButterConsistency: "smooth"
+    pairedWith: "jam"
+    fruitType: "strawberry"
+spec:
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: "meatType"
+            operator: Exists
+        topologyKey: kubernetes.io/hostname
+  containers:
+  - name: peanutbutter
+    image: fedora:29
+    command: ["sleep"]
+    args: ["3600"]
+  - name: strawberryjam
+    image: fedora:29
+    command: ["sleep"]
+    args: ["3600"]
+  terminationGracePeriodSeconds: 0
+  restartPolicy: Always

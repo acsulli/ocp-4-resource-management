@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: turkey
+  labels:
+    meatType: "turkey"
+    cheeseType: "swiss"
+    mayo: "yes"
+    mustard: "yellow"
+    ketchup: "no"
+spec:
+  nodeSelector:
+    glutenFree: "true"
+  tolerations:
+  - key: "breadType"
+    operator: "Equal"
+    value: "wheat"
+    effect: "NoExecute"
+  - key: "breadType"
+    operator: "Equal"
+    value: "pumpernickel"
+    effect: "NoExecute"
+  containers:
+  - name: turkey
+    image: fedora:29
+    command: ["sleep"]
+    args: ["3600"]
+  terminationGracePeriodSeconds: 0
+  restartPolicy: Always
